@@ -17,6 +17,14 @@ function affiche(doc){
 
   ul.appendChild(li);//intégrer la balise li dans la balise ul présente sur le html
   
+  //-------------function delete data ---------------------------------
+  supprimer.addEventListener('click',(e)=>{
+    let id = e.target.parentElement.getAttribute('data-id');//Obtenir l'identifiant
+    db.collection('personnes').doc(id).delete();//Supprimer cette identifiant de la base de données
+    alert("element " + id + ' a été supprimé')
+
+  })
+  //-------------------------------------------------------------------
 
 }
 //----------------------------------------------------------------------------------------------------
@@ -38,10 +46,12 @@ const personnes =db.collection('personnes').get().then(
 form.addEventListener('submit', (e) => { //Actionner l'évenement submit de la form ajouter
   e.preventDefault(); // Empécher l'éxécution de submmit pour laisser la fonction firebase s'éxécuter
   db.collection('personnes').add({
-    Nom: form.nom.value,
+   //----mettre les données de la forme dans les variable a ajouté------
+    Nom: form.nom.value, 
     prenom: form.prenom.value,
     age: form.age.value
   });
+  //------Vider les formes ------
   form.nom.value="";
   form.prenom.value="";
   form.age.value="";
