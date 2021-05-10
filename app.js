@@ -57,3 +57,18 @@ form.addEventListener('submit', (e) => { //Actionner l'évenement submit de la f
   form.age.value="";
 });
 //--------------------------------------------------------------------------------------------------
+
+
+//-----------------------Real-time --------------------------------------------
+// db.collection('personnes').onSnapshot(snapshot => {
+//   let changes = snapshot.docChanges();
+//   changes.forEach(change => {
+//       console.log(change.doc.data());
+//       if(change.type == 'added'){
+//           affiche(change.doc);
+//       } else if (change.type == 'removed'){
+//           let li = ul.querySelector('[data-id=' + change.doc.id + ']');
+//           ul.removeChild(li);
+//       }
+//   });
+// });
