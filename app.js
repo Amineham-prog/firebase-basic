@@ -9,12 +9,14 @@ function affiche(doc){
   let li = document.createElement('li'); // Créer une balise li
   let supprimer = document.createElement('div'); // créer une balise div
 
+let modifier = document.createElement('BUTTON'); // créer une balise pour modifier 
+
   li.setAttribute('data-id', doc.id) // donner l'identifiant de la personne comme attribut a la liste
   li.textContent=doc.data().Nom + ' ' + doc.data().prenom + ' ' +doc.data().age + ' , id=  ' + doc.id //mettre les données dans la liste
   supprimer.textContent='X' // Ecrite dans la balise supprimer
-  
+  modifier.textContent='Update' // Ecrite dans la balise modifier
   li.appendChild(supprimer) // intégrer le 'x' dans la balise li
-
+  li.appendChild(modifier)
   ul.appendChild(li);//intégrer la balise li dans la balise ul présente sur le html
   
   //-------------function delete data ---------------------------------
@@ -24,10 +26,29 @@ function affiche(doc){
     alert("element " + id + ' a été supprimé')
 
   })
-  //-------------------------------------------------------------------
+  //---------------------------------------------------------------------------------------
 
-}
+
+
+  //--------------------------------function UPDATE ---------------------------
+  modifier.addEventListener('click',(e)=>{
+    let newnom= prompt("Donner le nom") // lire le nouveau nom 
+    let id = e.target.parentElement.getAttribute('data-id');//Obtenir l'identifiant
+   //Modifier le nom sur la base de données -
+    db.collection('personnes').doc(id).update({
+      Nom:newnom
+    }
+
+  
+    );
+    alert("Le nom de l'element " + id + ' a ete modifier')
+
+  })}
 //----------------------------------------------------------------------------------------------------
+
+
+
+
 
 //--------------------------fonction GET DATA ----------------------------------
 const personnes =db.collection('personnes').get().then(
@@ -57,6 +78,11 @@ form.addEventListener('submit', (e) => { //Actionner l'évenement submit de la f
   form.age.value="";
 });
 //--------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 //-----------------------Real-time --------------------------------------------

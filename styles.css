@@ -54,7 +54,17 @@ li div{
     font-weight:  bold;
     cursor:  pointer;
 }
-
+li button{
+    position: absolute;
+    top: 5;
+    right: 45px;
+    background: rgb(38, 100, 30);
+    text-align: center;
+    padding: 10px 0;
+    font-weight:  bold;
+    cursor:  pointer;
+   
+}
 form input{
     float: left;
     width: 20%;
